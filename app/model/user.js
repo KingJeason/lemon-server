@@ -9,6 +9,8 @@ module.exports = app => {
     loginname: { type: String },
     pass: { type: String },
     email: { type: String },
+    avatar: { type: String },
+
   });
   return mongoose.model('User', UserSchema);
 };
