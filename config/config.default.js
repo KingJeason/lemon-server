@@ -55,5 +55,10 @@ module.exports = appInfo => {
     ignoreTLS: true,
   };
 
+  // jwt秘钥
+  config.jwt = {
+    secret: 'wsyyxy',
+  };
+
   return config;
 };
