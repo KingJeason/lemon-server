@@ -20,6 +20,8 @@
     "egg-validate": "^2.0.2",
     "eslint": "^4.11.0",
     "eslint-config-egg": "^6.0.0",
+    "nodemailer": "^4.6.8",
+    "nodemailer-smtp-transport": "^2.7.4",
     "uuid": "^3.3.2",
     "validator": "^10.9.0",
     "webstorm-disable-index": "^1.2.0"

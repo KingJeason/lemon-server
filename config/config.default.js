@@ -42,6 +42,18 @@ module.exports = appInfo => {
     },
   };
 
+  config.host = 'http://lemon-room.com';
+
+  // 邮箱配置
+  config.mail_opts = {
+    host: 'smtp.qq.com',
+    port: 465,
+    auth: {
+      user: '1503268691@qq.com',
+      pass: 'vmgolvqjsowphfeg',
+    },
+    ignoreTLS: true,
+  };
 
   return config;
 };

@@ -55,8 +55,8 @@ class UserController extends Controller {
 
     const passhash = ctx.helper.bhash(pass);
     const avatarUrl = 'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1541708653056&di=e51abbcf0cdc12e09d9a1559d35adc02&imgtype=0&src=http%3A%2F%2Fmmbiz.qpic.cn%2Fmmbiz_gif%2FUPz60PwoiajgCt96vuHfO2SQPGVhaFzxsicfvhnHVIo64K1kgulbxlph4ictzrVXFW2cJjwyr18O8wfbTXIUrkHBA%2F640%3Fwx_fmt%3Dgif';
-    await service.user.newAndSave(loginname, loginname, passhash, email, avatarUrl, false);
-
+    // await service.user.newAndSave(loginname, loginname, passhash, email, avatarUrl, false);
+    await service.mail.sendActiveMail(email, utility.md5(email + passhash + config.session_secret), loginname);
   }
 }
 
