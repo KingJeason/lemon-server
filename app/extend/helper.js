@@ -10,15 +10,6 @@ exports.bhash = str => {
 };
 
 /**
-   * 生成token
-   * @param {String} loginName 登录名
-   * @return {String} token
-   */
-exports.createJwt = loginName => {
-  return this.jwt.sign({ loginName }, this.config.jwt.secret);
-};
-
-/**
  * 比较pass和库里的hash是否一致
  * @param {String} pass 明文密码
  * @param {String} hash 加密后密码

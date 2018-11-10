@@ -1,6 +1,6 @@
 'use strict';
 
-const utility = require('utility');
+// const utility = require('utility');
 const uuid = require('uuid/v4');
 const Service = require('egg').Service;
 

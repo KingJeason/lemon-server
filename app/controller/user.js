@@ -1,7 +1,7 @@
 'use strict';
 const validator = require('validator');
 const utility = require('utility');
-const uuid = require('uuid');
+// const uuid = require('uuid');
 const Controller = require('egg').Controller;
 
 class UserController extends Controller {
@@ -65,7 +65,7 @@ class UserController extends Controller {
 
   // 登录
   async signIn() {
-    const { ctx: { request: { body } }, service, config } = this;
+    const { ctx: { request: { body } }, service } = this;
     // console.log(ctx.request.body);
     const user = await service.user.getUserByQuery({
       $or: [
@@ -90,6 +90,13 @@ class UserController extends Controller {
       };
       return;
     }
+    // TODO createToken'
+    const token = await service.auth.createToken(user._id);
+    this.ctx.status = 200;
+    this.ctx.body = {
+      success: true,
+      token,
+    };
   }
 
   // 激活账号
