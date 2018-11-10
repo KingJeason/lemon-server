@@ -16,7 +16,6 @@ module.exports = () => {
     // console.log(token, '12313toekn');
 
     const _id = await ctx.service.auth.decodeToken(token);
-    console.log(_id, token);
     const user = await ctx.service.user.getUserByQuery({ _id });
 
     if (!user) {

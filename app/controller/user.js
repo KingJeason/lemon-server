@@ -101,6 +101,18 @@ class UserController extends Controller {
 
   async getMe() {
     // console.log(this.ctx.request.user);
+    this.ctx.status = 200;
+    const { user: { _id, name, loginname, email, avatar } } = this.ctx.request;
+    this.ctx.body = {
+      success: true,
+      data: {
+        _id,
+        name,
+        loginname,
+        email,
+        avatar,
+      },
+    };
   }
   // 激活账号
   async activeAccount() {
