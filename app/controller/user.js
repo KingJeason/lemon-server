@@ -91,7 +91,7 @@ class UserController extends Controller {
       return;
     }
     // TODO createToken'
-    const token = await service.auth.createToken(user._id);
+    const token = await service.auth.createToken({ _id: user._id });
     this.ctx.status = 200;
     this.ctx.body = {
       success: true,
@@ -99,6 +99,9 @@ class UserController extends Controller {
     };
   }
 
+  async getMe() {
+    // console.log(this.ctx.request.user);
+  }
   // 激活账号
   async activeAccount() {
     const { ctx, service, config } = this;
