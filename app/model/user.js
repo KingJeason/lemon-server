@@ -10,7 +10,7 @@ module.exports = app => {
     pass: { type: String },
     email: { type: String },
     avatar: { type: String },
-    isBlock: { type: Boolean },
+    isBlock: { type: Boolean, default: true },
 
   });
   return mongoose.model('User', UserSchema);

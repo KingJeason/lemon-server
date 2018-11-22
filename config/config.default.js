@@ -60,5 +60,11 @@ module.exports = appInfo => {
     secret: 'wsyyxy',
   };
 
+  exports.cors = {
+    origin: '*',
+    allowMethods: 'GET,HEAD,PUT,POST,DELETE,PATCH',
+  };
+
+
   return config;
 };

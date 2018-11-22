@@ -37,13 +37,14 @@ class UserController extends Controller {
       };
       return;
     }
+
     const users = await service.user.getUsersByQuery({
       $or: [
         { loginname },
         { email },
       ],
     }, {});
-    console.log(users);
+
     if (users.length > 0) {
       ctx.status = 422;
       ctx.body = {
@@ -103,6 +104,7 @@ class UserController extends Controller {
     // console.log(this.ctx.request.user);
     this.ctx.status = 200;
     const { user: { _id, name, loginname, email, avatar } } = this.ctx.request;
+    console.log(12313);
     this.ctx.body = {
       success: true,
       data: {
