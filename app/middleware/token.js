@@ -14,7 +14,14 @@ module.exports = () => {
       token = ctx.request.body.accesstoken;
     }
     // console.log(token, '12313toekn');
-
+    if (!token) {
+      ctx.status = 401;
+      ctx.body = {
+        success: false,
+        error_msg: '错误的 accessToken',
+      };
+      return;
+    }
     const _id = await ctx.service.auth.decodeToken(token);
     const user = await ctx.service.user.getUserByQuery({ _id });
 

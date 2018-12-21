@@ -9,6 +9,7 @@ module.exports = app => {
   const {
     controller: {
       user,
+      draft,
     },
     middleware,
   } = app;
@@ -18,4 +19,7 @@ module.exports = app => {
   apiV1Router.post('/signup', user.signUp);
   apiV1Router.post('/signin', user.signIn);
   apiV1Router.get('/user/me', token, user.getMe);
+
+  // draft
+  apiV1Router.post('/draft', token, draft.createDraft);
 };

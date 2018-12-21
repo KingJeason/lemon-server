@@ -1,4 +1,5 @@
 'use strict';
+const timestamps = require('mongoose-timestamp');
 
 module.exports = app => {
   const mongoose = app.mongoose;
@@ -12,6 +13,11 @@ module.exports = app => {
     avatar: { type: String },
     isBlock: { type: Boolean, default: true },
 
+  });
+
+  UserSchema.plugin(timestamps, {
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt',
   });
   return mongoose.model('User', UserSchema);
 };
