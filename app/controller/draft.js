@@ -17,6 +17,7 @@ class DraftController extends Controller {
       },
     };
   }
+
   async update() {
     const { ctx, service } = this;
     const { user } = ctx.request;
@@ -36,6 +37,29 @@ class DraftController extends Controller {
     ctx.status = 200;
     ctx.body = {
       success: true,
+    };
+  }
+
+  async index() {
+    const { ctx } = this;
+    const { model: { Draft }, request: { user } } = ctx;
+    console.log(user);
+    const drafts = await Draft.find({ userId: user._id }).sort({ updatedAt: -1 });
+    ctx.status = 200;
+    ctx.body = {
+      success: true,
+      data: drafts,
+    };
+  }
+
+  async show() {
+    const { ctx } = this;
+    const _id = ctx.params.id;
+    const draft = await ctx.model.Draft.findById(_id);
+    ctx.status = 200;
+    ctx.body = {
+      success: true,
+      data: draft,
     };
   }
 }

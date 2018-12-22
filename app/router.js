@@ -21,6 +21,6 @@ module.exports = app => {
   apiV1Router.get('/user/me', token, user.getMe);
 
   // draft
-  apiV1Router.post('/draft', token, draft.create);
-  apiV1Router.put('/draft', token, draft.update);
+  apiV1Router.resources('/drafts', token, draft);
+  // apiV1Router.put('/draft', token, draft.update);
 };
