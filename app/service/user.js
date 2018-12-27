@@ -19,8 +19,9 @@ class UserService extends Service {
     return this.ctx.model.User.find(query, '', opt).exec();
   }
 
-  getUserByQuery(query) {
-    return this.ctx.model.User.findOne(query).exec();
+  getUserByQuery(query, select) {
+    console.log(query, select);
+    return this.ctx.model.User.findOne(query).select(select).exec();
   }
 
   /*

@@ -6,7 +6,7 @@ const Controller = require('egg').Controller;
 
 class UserController extends Controller {
   // 注册
-  async signUp() {
+  async signUp () {
     const { ctx, service, config } = this;
     let { loginname, pass, rePass, email } = ctx.request.body;
     loginname = validator.trim(loginname || '').toLowerCase();
@@ -16,7 +16,7 @@ class UserController extends Controller {
     let msg;
     // 验证信息的正确性
     console.log(loginname, pass, rePass, email);
-    if ([ loginname, pass, rePass, email ].some(item => {
+    if ([loginname, pass, rePass, email].some(item => {
       return item === '';
     })) {
       msg = '信息不完整。';
@@ -65,7 +65,8 @@ class UserController extends Controller {
   }
 
   // 登录
-  async signIn() {
+  async signIn () {
+    console.log('join');
     const { ctx: { request: { body } }, service } = this;
     // console.log(ctx.request.body);
     const user = await service.user.getUserByQuery({
@@ -73,7 +74,8 @@ class UserController extends Controller {
         { loginname: new RegExp(`^${body.loginname}$`, 'i') },
         { email: new RegExp(`^${body.loginname}$`, 'i') },
       ],
-    }, {});
+    });
+    console.log(user.id, 'user');
     // console.log(user);
     if (!user) {
       this.ctx.status = 422;
@@ -91,16 +93,21 @@ class UserController extends Controller {
       };
       return;
     }
+    console.log(user);
+    const { pass, ...otherobj } = user._doc; 
     // TODO createToken'
     const token = await service.auth.createToken({ _id: user._id });
     this.ctx.status = 200;
     this.ctx.body = {
       success: true,
-      token,
+      data: {
+        token,
+        user: otherobj,
+      },
     };
   }
 
-  async getMe() {
+  async getMe () {
     // console.log(this.ctx.request.user);
     this.ctx.status = 200;
     const { user: { _id, name, loginname, email, avatar } } = this.ctx.request;
@@ -117,7 +124,7 @@ class UserController extends Controller {
     };
   }
   // 激活账号
-  async activeAccount() {
+  async activeAccount () {
     const { ctx, service, config } = this;
     const key = validator.trim(ctx.query.key || '');
     const name = validator.trim(ctx.query.name || '');
