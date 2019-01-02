@@ -111,7 +111,6 @@ class UserController extends Controller {
     // console.log(this.ctx.request.user);
     this.ctx.status = 200;
     const { user: { _id, name, loginname, email, avatar } } = this.ctx.request;
-    console.log(12313);
     this.ctx.body = {
       success: true,
       data: {

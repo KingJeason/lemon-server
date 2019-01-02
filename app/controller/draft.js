@@ -3,7 +3,7 @@
 const Controller = require('egg').Controller;
 
 class DraftController extends Controller {
-  async create() {
+  async create () {
     // this.ctx.body = 'hi, egg';
     const { ctx, service } = this;
     const { user } = ctx.request; //  token解析的user
@@ -18,11 +18,11 @@ class DraftController extends Controller {
     };
   }
 
-  async update() {
+  async update () {
     const { ctx, service } = this;
     const { user } = ctx.request;
-    const { markdown, previewImage, title, type, _id } = ctx.request.body;
-
+    const { ...rest } = ctx.request.body;
+    const { id:_id } = ctx.params;
     // 判断传过来的user和库里的draft里的userId是否一致
     const isValid = await service.draft.valideUser(user._id, _id);
     if (!isValid) {
@@ -33,14 +33,14 @@ class DraftController extends Controller {
       };
       return;
     }
-    await service.draft.update(_id, { markdown, previewImage, title, type });
+    await service.draft.update(_id, { ...rest });
     ctx.status = 200;
     ctx.body = {
       success: true,
     };
   }
 
-  async index() {
+  async index () {
     const { ctx } = this;
     const { model: { Draft }, request: { user } } = ctx;
     console.log(user);
@@ -52,7 +52,7 @@ class DraftController extends Controller {
     };
   }
 
-  async show() {
+  async show () {
     const { ctx } = this;
     const _id = ctx.params.id;
     const draft = await ctx.model.Draft.findById(_id);

@@ -26,11 +26,11 @@ class DraftService extends Service {
   }
 
   /**
-         *
-         * @param {String} tokenId token里的id
-         * @param {String} _id draft实例的id
-         * @return {Boolean} @true 一致 @false 不一致
-         */
+    *
+    * @param {String} tokenId token里的id
+    * @param {String} _id draft实例的id
+    * @return {Boolean} @true 一致 @false 不一致
+    */
   async valideUser(tokenId, _id) {
     const { Draft } = this.ctx.model;
     const draft = await Draft.findById(_id);
@@ -41,6 +41,7 @@ class DraftService extends Service {
 
   async update(_id, obj) {
     const { Draft } = this.ctx.model;
+    console.log(obj, 'obj', _id);
     await Draft.findByIdAndUpdate(_id, obj);
 
   }

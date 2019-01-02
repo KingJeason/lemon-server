@@ -13,7 +13,6 @@ module.exports = () => {
     } else if (ctx.request.body.accesstoken) {
       token = ctx.request.body.accesstoken;
     }
-    // console.log(token, '12313toekn');
     if (!token) {
       ctx.status = 401;
       ctx.body = {
