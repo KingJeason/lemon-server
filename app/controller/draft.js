@@ -52,6 +52,30 @@ class DraftController extends Controller {
     };
   }
 
+  async destroy() {
+    const { ctx, service} = this
+    const { model: { Draft }, request: { user } } = ctx;
+    const { id: _id } = ctx.params;
+    // 判断传过来的user和库里的draft里的userId是否一致
+    const isValid = await service.draft.valideUser(user._id, _id);
+    if (!isValid) {
+      ctx.status = 401;
+      ctx.body = {
+        success: false,
+        error_msg: '你是黑客么!😤',
+      };
+      return;
+    }
+    console.log(_id, 'idid')
+    const draft = await Draft.findByIdAndDelete(_id)
+    ctx.status = 200;
+    ctx.body = {
+      success: true,
+      data: draft,
+    };
+
+  }
+
   async show () {
     const { ctx } = this;
     const _id = ctx.params.id;
