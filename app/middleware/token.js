@@ -2,7 +2,6 @@
 
 module.exports = () => {
   return async function(ctx, next) {
-    // console.log(ctx.headers, '777');
     let token = '';
     if (
       ctx.headers.authorization && ctx.headers.authorization.split(' ')[0] === 'Bearer'
