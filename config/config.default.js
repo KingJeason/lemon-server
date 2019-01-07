@@ -55,6 +55,12 @@ module.exports = appInfo => {
     ignoreTLS: true,
   };
 
+  // 七牛云上传配置
+  config.qiniuToken = {
+    accessKey: 'v4idqD6T6yVdroo3btZP--hvSadckyWvzwjAqWhF',
+    secretKey: 'BOgvx52Gf_wSxulvAqs19KyIflAJnHjDXozFNsSi',
+  };
+
   // jwt秘钥
   config.jwt = {
     secret: 'wsyyxy',
