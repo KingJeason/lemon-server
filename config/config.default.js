@@ -42,6 +42,9 @@ module.exports = appInfo => {
     },
   };
 
+  config.classifies = [ '阅读', '前端', '后端', '算法', '工具', '生活' ];
+
+
   config.host = 'http://lemon-room.com';
 
   // 邮箱配置

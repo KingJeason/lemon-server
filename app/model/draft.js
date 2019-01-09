@@ -11,8 +11,9 @@ module.exports = app => {
     title: { type: String },
     userId: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
     type: { type: String }, //  markdown | 富文本
-    previewImage: { type: String }, // 背景图
-
+    previewImage: { type: String, default: '' }, // 背景图
+    classify: { type: String, default: '阅读' }, // 分类, 总分类定义在config里
+    isPublish: { type: Boolean, default: false }, // 是否发布
   });
 
   DraftSchema.plugin(timestamps, {
