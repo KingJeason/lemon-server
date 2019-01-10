@@ -3,6 +3,7 @@
 const Controller = require('egg').Controller;
 
 class DraftController extends Controller {
+
   async create () {
     // this.ctx.body = 'hi, egg';
     const { ctx, service } = this;
@@ -85,6 +86,10 @@ class DraftController extends Controller {
       success: true,
       data: draft,
     };
+  }
+
+  async publish(){
+    
   }
 }
 
